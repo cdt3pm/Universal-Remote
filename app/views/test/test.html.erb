@@ -1,0 +1,9 @@
+<form action="/test/act" method="post">
+	<input name="authenticity_token" value="<%= form_authenticity_token %>" type="hidden" />
+	<label for="remote">Remote</label>
+	<input name="remote" id="remote" value="RECEIVER" />
+	<label for="command">Command</label>
+	<input name="command" id="command" />
+
+	<input type="submit" value="Submit" />
+</form>
