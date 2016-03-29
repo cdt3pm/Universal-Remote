@@ -8,6 +8,11 @@ Rails.application.routes.draw do
 	get 'test/test' => 'test#test'
 	post 'test/act' => 'test#act'
 
+	resources :remotes
+	resources :commands do
+		get 'execute', on: :member
+	end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
