@@ -4,7 +4,7 @@ class RemotesController < ApplicationController
 	end
 
 	def show
-		id = params.requre(:id)
+		id = params.require(:id)
 		@remote = Remote.find(id)
 	end
 

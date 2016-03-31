@@ -1,6 +1,6 @@
 class CommandsController < ApplicationController
 	def execute
-		command = Command.find(:id)
+		command = Command.find(params.require(:id))
 		command.execute
 		render nothing: true
 	end

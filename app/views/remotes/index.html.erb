@@ -1,0 +1,6 @@
+<% @remotes.each do |remote| %>
+	<h2><%= remote.name %></h2>
+	<% remote.commands.each do |command| %>
+		<button id="<%= command.id %>"><%= command.name %></button>
+	<% end %>
+<% end %>

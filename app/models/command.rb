@@ -2,7 +2,7 @@ class Command < ActiveRecord::Base
 	COMMAND_TEMPLATE = 'irsend %s %s %s'
 	SEND_START = 'SEND_START'
 	SEND_STOP = 'SEND_STOP'
-	SEND_ONCE = 'SEND_STOP'
+	SEND_ONCE = 'SEND_ONCE'
 
 	belongs_to :remote
 	has_many :script_commands, dependent: :delete_all
@@ -10,7 +10,7 @@ class Command < ActiveRecord::Base
 
 	def execute(param = nil)
 		if remote
-			if param then hold_for(param) else send_once
+			if param then hold_for(param) else send_once end
 		else
 			# Assume wait
 			sleep(param ? param : 1)
@@ -31,6 +31,6 @@ class Command < ActiveRecord::Base
 
 	private
 	def execute_command(action)
-		`#{COMMAND_TEMPLATE % [remote.name, action, name]}`
+		`#{COMMAND_TEMPLATE % [action, remote.name, name]}`
 	end
 end
