@@ -8,6 +8,11 @@ class Command < ActiveRecord::Base
 	has_many :script_commands, dependent: :delete_all
 	has_many :scripts, through: :script_commands
 
+	def self.default_id
+		@default ||= Command.where(remote: { default: true }).first
+		@default.id
+	end
+
 	def execute(param = nil)
 		if remote
 			if param then hold_for(param) else send_once end

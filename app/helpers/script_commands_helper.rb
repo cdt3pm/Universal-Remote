@@ -1,0 +1,2 @@
+module ScriptCommandsHelper
+end

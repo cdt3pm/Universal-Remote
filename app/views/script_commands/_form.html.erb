@@ -1,0 +1,10 @@
+<%= form_for c, remote: true do |f| %>
+	<%= f.label :description %>
+	<%= f.text_field :description %>
+
+	<%= f.label :remote %>
+	<%= collection_select c.command, :remote_id, Remote.all, :id, :name %>
+
+	<%= f.label :command %>
+	<%= f.collection_select :command_id, Command.where(remote_id: c.command.remote_id), :id, :name %>
+<% end %>

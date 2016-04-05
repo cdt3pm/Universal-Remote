@@ -6,15 +6,9 @@
 <% end %>
 
 <h4>Commands: </h4>
-<% @script.script_commands.each do |c| %>
-	<%= form_for c do |f| %>
-		<%= f.label :description %>
-		<%= f.text_field :description %>
-
-		<%= f.label :remote %>
-		<%= collection_select c.command, :remote_id, Remote.all, :id, :name %>
-
-		<%= f.label :command %>
-		<%= f.collection_select :command_id, Command.where(remote_id: c.command.remote_id), :id, :name %>
+<div id="commands">
+	<% @script.script_commands.each do |c| %>
+		<%= render 'script_commands/form', locals: { c: c } %>
 	<% end %>
-<% end %>
+</div>
+<button id="addScriptCommand">Add Command</button>
