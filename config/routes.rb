@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
-	root 'test#test'
+	root 'remotes#index'
 	get 'test/test' => 'test#test'
 	post 'test/act' => 'test#act'
 
@@ -12,6 +12,8 @@ Rails.application.routes.draw do
 	resources :commands do
 		get 'execute', on: :member
 	end
+	resources :scripts
+	resources :script_commands
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

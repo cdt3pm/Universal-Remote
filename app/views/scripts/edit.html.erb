@@ -1,0 +1,20 @@
+<%= form_for @script do |f| %>
+	<%= f.label :name %>
+	<%= f.text_field :name %>
+
+	<%= f.submit 'Save' %>
+<% end %>
+
+<h4>Commands: </h4>
+<% @script.script_commands.each do |c| %>
+	<%= form_for c do |f| %>
+		<%= f.label :description %>
+		<%= f.text_field :description %>
+
+		<%= f.label :remote %>
+		<%= collection_select c.command, :remote_id, Remote.all, :id, :name %>
+
+		<%= f.label :command %>
+		<%= f.collection_select :command_id, Command.where(remote_id: c.command.remote_id), :id, :name %>
+	<% end %>
+<% end %>
