@@ -11,9 +11,9 @@ WebsocketRails::EventMap.describe do
   #     subscribe :new, :to => ProductController, :with_method => :new_product
   #   end
   # The above will handle an event triggered on the client like `product.new`.
-	namespace :remotes end
-		subscribe :new_remote, 'remotes#start'
-		subscribe :remote_imput, 'remotes#input'
-		subscribe :cancel, 'remotes#cancel'
+	namespace :remotes do
+		subscribe :new_remote, 'command_line#start'
+		subscribe :remote_imput, 'command_line#input'
+		subscribe :cancel, 'command_line#cancel'
 	end
 end

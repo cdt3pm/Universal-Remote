@@ -4,7 +4,8 @@
 
 $(document).ready ->
 	$('button.command').click -> $.get('/commands/' + $(this).attr('id') + '/execute')
-	dispatcher = new WebSocketRails 'http://pi:3000/websocket'
-	dispatcher.subscribe('remotes').bind 'output', output -> console.log 'OUTPUT ' + output
+	dispatcher = new WebSocketRails 'pi:3000/websocket'
+	dispatcher.subscribe('remotes').bind 'output', (output) -> console.log 'OUTPUT ' + output
+	debugger
 	console.log 'triggering new remote'
 	dispatcher.trigger 'remotes.new_remote'
