@@ -1,3 +1,5 @@
+<% remotes = Remote.all %>
+
 <%= form_for @script do |f| %>
 	<%= f.label :name %>
 	<%= f.text_field :name %>
@@ -8,7 +10,9 @@
 <h4>Commands: </h4>
 <div id="commands">
 	<% @script.script_commands.each do |c| %>
-		<%= render 'script_commands/form', locals: { c: c } %>
+		<%= render partial: 'script_commands/form', locals: { c: c, remotes: remotes } %>
 	<% end %>
 </div>
 <button id="addScriptCommand">Add Command</button>
+<button id="saveSubforms">Save Commands</button>
+<button id="test">Test this script</button>

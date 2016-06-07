@@ -5,15 +5,16 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 	root 'remotes#index'
-	get 'test/test' => 'test#test'
-	post 'test/act' => 'test#act'
 
-	resources :remotes
+	resources :remotes do
+		get 'commands', on: :member
+	end
 	resources :commands do
 		get 'execute', on: :member
 	end
 	resources :scripts do
 		get 'new_command', on: :member
+		get 'execute', on: :member
 	end
 	resources :script_commands, except: [ 'create', 'index' ]
 

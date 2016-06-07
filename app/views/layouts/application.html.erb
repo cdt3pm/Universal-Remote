@@ -7,6 +7,12 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+	<h1>Universal Remote<h2>
+	<nav>
+		<%= link_to 'Scripts', scripts_path %>
+		<%= link_to 'New Script', new_script_path %>
+		<%= link_to 'Remotes', remotes_path %>
+	</nav>
 
 <%= yield %>
 

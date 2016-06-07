@@ -1,10 +1,21 @@
-<%= form_for c, remote: true do |f| %>
-	<%= f.label :description %>
-	<%= f.text_field :description %>
+<% remotes ||= Remote.all %>
+<% @command = c.command %>
 
-	<%= f.label :remote %>
-	<%= collection_select c.command, :remote_id, Remote.all, :id, :name %>
+<div class="script-command-container">
+	<%= form_for c, remote: true, html: { class: 'command-subform' } do |f| %>
+		<%= f.label :description %>
+		<%= f.text_field :description %>
 
-	<%= f.label :command %>
-	<%= f.collection_select :command_id, Command.where(remote_id: c.command.remote_id), :id, :name %>
-<% end %>
+		<%= f.label :remote %>
+		<%= collection_select :command, :remote_id, remotes, :id, :name, {}, { class: 'remote', name: '', id: '' } %>
+
+		<%= f.label :command %>
+		<%= f.collection_select :command_id, Command.where(remote_id: c.command.remote_id), :id, :name %>
+
+		<%= f.label :duration %>
+		<%= f.number_field :duration, { min: 0, max: 30 } %>
+	<% end %>
+
+	<%= button_to 'X', { controller: 'script_commands', action: 'destroy', id: c.id }, method: :delete, remote: true, class: 'delete' %>
+</div>
+

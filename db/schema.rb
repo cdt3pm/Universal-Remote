@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160328204504) do
+ActiveRecord::Schema.define(version: 20160405183218) do
 
   create_table "commands", force: :cascade do |t|
     t.string   "name"
@@ -24,8 +24,9 @@ ActiveRecord::Schema.define(version: 20160328204504) do
   create_table "remotes", force: :cascade do |t|
     t.string   "name"
     t.string   "display"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "is_default", default: false
   end
 
   create_table "script_commands", force: :cascade do |t|

@@ -3,4 +3,8 @@ class ScriptCommand < ActiveRecord::Base
 
 	belongs_to :script
 	belongs_to :command
+
+	def execute
+		command.execute(duration || 0)
+	end
 end

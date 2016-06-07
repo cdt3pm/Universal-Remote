@@ -3,4 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-	$('button').click -> $.get('/commands/' + $(this).attr('id') + '/execute')
+	$('button.command').click -> $.get('/commands/' + $(this).attr('id') + '/execute')
+	dispatcher = new WebSocketRails 'http://pi:3000/websocket'
+	dispatcher.subscribe('remotes').bind 'output', output -> console.log 'OUTPUT ' + output
+	console.log 'triggering new remote'
+	dispatcher.trigger 'remotes.new_remote'

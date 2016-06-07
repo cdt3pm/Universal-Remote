@@ -2,21 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-class Subform
-	constructor: (@form) ->
-		@dirty = false
-		@form.change -> @form.submit()
-		#@form.change -> @dirty = true
-		#@form.blur -> @form.submit if @dirty
-
-$('#addScriptCommand').click (e) ->
-	$.get document.location + '/new_command',
-		(resp) ->
-			form = $ resp
-			$('#commands').append form
-			new Subform form
-		(err) -> console.log(err)
-
-$(document).ready ->
-	$('#commands form').each (form) -> new Subform form
-
+$(document).on 'page:change', ->
+	deleteForms = $('.deleteScript').parents('form.button_to')
+	deleteForms.on 'ajax:success', -> $(this).parents('.scriptContainer').remove()
+	deleteForms.on 'ajax:error', (e) -> $(this).parents('.scriptContainer').show()
